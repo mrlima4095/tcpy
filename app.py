@@ -19,6 +19,7 @@ class Application:
 
     def handle_client(self, client_socket, addr):
         print(f"[+] {addr[0]} connected")
+        ENV = {}
         try:
             while True:
                 payload = client_socket.recv(4096).decode('utf-8')
