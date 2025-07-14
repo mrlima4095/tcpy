@@ -31,12 +31,11 @@ class Application:
                 output = io.StringIO()
                 try:
                     with contextlib.redirect_stdout(output), contextlib.redirect_stderr(output):
-                        exec(payload, self.shared_globals)
+                        exec(payload, ENV)
                 except Exception as e:
                     output.write(f"[!] Erro ao executar: {e}\n")
 
                 result = output.getvalue()
-                if not result: result = "[✓] Comando executado sem saída.\n"
 
                 client_socket.send(result.encode('utf-8'))
 
