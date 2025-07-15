@@ -33,7 +33,7 @@ class Application:
                     with contextlib.redirect_stdout(output), contextlib.redirect_stderr(output):
                         exec(payload, ENV)
                 except Exception as e:
-                    output.write(f"[!] Erro ao executar: {e}\n")
+                    output.write(e + "\n")
 
                 result = output.getvalue()
 
