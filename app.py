@@ -7,7 +7,7 @@ import contextlib
 
 
 class Application:
-    def __init__(self, host="0.0.0.0", port=10141):
+    def __init__(self, host="0.0.0.0", port=10142):
         self.server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self.server.bind((host, port))
         self.server.listen(31522)
