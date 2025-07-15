@@ -1,3 +1,5 @@
+import os
+import sys
 import socket
 import threading
 import io
@@ -33,7 +35,7 @@ class Application:
                     with contextlib.redirect_stdout(output), contextlib.redirect_stderr(output):
                         exec(payload, ENV)
                 except Exception as e:
-                    output.write(e + "\n")
+                    output.write(str(e) + "\n")
 
                 result = output.getvalue()
 
@@ -45,4 +47,8 @@ class Application:
 
 
 if __name__ == "__main__":
+    if os.geteuid() == 0:
+        print("[-] Execution as root is blocked for security reasons.")
+        sys.exit(1)
+
     Application()
